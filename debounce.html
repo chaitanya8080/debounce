@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+      <div>
+          <input id="throtling" onkeyup="dbounceFunctioncall()"/>
+          <button onclick="getData()"></button>
+          <div id="debo"></div>
+      </div>
+</body>
+</html>
+<script >
+     
+let count = 0
+const getData = ()=>{
+    console.log("fetching ",count++);
+    let div1 = document.createElement("div");
+    let val = document.getElementById("throtling").value;
+    div1.append(val);
+    document.getElementById("debo").append(div1,count)
+}
+
+const debounce = function (fn, d){              //closure the inside function can access the variable of outside scope
+  
+    let timer;
+    return function (){            // it will return this function                
+
+        let context = this,
+        args = arguments;
+        clearInterval(timer)
+         timer = setTimeout(()=>{       // it will stop the getaData function till d ms = 300ms
+            getData.apply(context,arguments);
+        },d)
+    }
+    
+}
+
+const dbounceFunctioncall = debounce(getData, 300)
+
+</script>

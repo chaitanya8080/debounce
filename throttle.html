@@ -1,0 +1,60 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <input type="text" id="text">
+        <button style="height: 30px", style="width:50px" id="btn">click</button>
+        <div id="display"></div>
+    </div>
+</body>
+</html>
+<script>
+
+
+    
+const throttle = (fn,delay)=>{
+      let last = 0;
+     return (...args)=>{
+            const now = new Date().getTime();
+            if(now - last <delay){
+                return;
+            }
+            last = now;
+            return fn(...args)
+     }
+}
+
+    document.getElementById("btn").addEventListener("click",throttle((e)=>{
+           let t =  document.getElementById("text").value 
+           let d = document.getElementById("display")
+
+           d.append(t);
+
+    },3000))
+
+
+</script>
+
+<!-- function sum(...theArgs) {
+    return theArgs.reduce((previous, current) => {
+      return previous + current;
+    });
+  }
+  
+  console.log(sum(1, 2, 3));
+  // expected output: 6
+  
+  console.log(sum(1, 2, 3, 4));
+  // expected output: 10 -->
+
+
+  
+  
